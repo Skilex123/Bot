@@ -22,9 +22,9 @@ def get_greetings_keyboard():
 @bot.message_handler(commands=['start'])
 def start_message(message):
     bot.send_message(
-        message.chat.id, 
-        'Выберите что вам нужно', 
-        reply_markup=get_greetings_keyboard(),    
+        message.chat.id,
+        'Выберите что вам нужно',
+        reply_markup=get_greetings_keyboard(),
     )
 
 
@@ -41,5 +41,3 @@ def weather_callback(call):
 if __name__ == '__main__':
     bot.infinity_polling()
 
-
-b="just for test"
