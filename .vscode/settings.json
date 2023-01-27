@@ -1,0 +1,35 @@
+{
+  "editor.suggestSelection": "first",
+  "python.languageServer": "Pylance",
+  "python.linting.mypyEnabled": true,
+  "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "python.sortImports.args": [
+      "-rc",
+      "-sp setup.cfg"
+  ],
+  "[python]": {
+      "editor.codeActionsOnSave": {
+          "source.organizeImports": true
+      },
+      "editor.defaultFormatter": "ms-python.python"
+  },
+  "notebook.cellToolbarLocation": {
+      "default": "right",
+      "jupyter-notebook": "left"
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "files.autoSaveDelay": 1000,
+
+  "diffEditor.maxComputationTime": 0,
+  "files.autoSave": "afterDelay",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "mypy.runUsingActiveInterpreter": true,
+  "tabnine.experimentalAutoImports": true,
+  "git.autofetch": true,
+  "go.inlayHints.constantValues": true,
+  "git.suggestSmartCommit": false,
+  "window.zoomLevel": -1,
+}

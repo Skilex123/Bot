@@ -6,7 +6,7 @@ jspm_packages
 .serverless
 .dynamodb
 .webpack
-.vscode
+# .vscode
 *.pyc
 
 #virtual env
