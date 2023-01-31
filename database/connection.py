@@ -1,6 +1,8 @@
-import psycopg2
 import os
 from typing import Callable
+
+import psycopg2
+
 
 class Conn:
 
