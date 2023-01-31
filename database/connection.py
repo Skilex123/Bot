@@ -1,6 +1,6 @@
 import psycopg2
 import os
-
+from typing import Callable
 
 class Conn:
 
@@ -14,7 +14,7 @@ class Conn:
             host=os.environ['DB_HOST'],
         )
 
-    def open_and_close_conn(func):
+    def open_and_close_conn(func: Callable): # type: ignore
         def wrapper(*args, **kwargs):
             conn = Conn().conn
             cursor = conn.cursor()
@@ -24,14 +24,17 @@ class Conn:
             return resp
         return wrapper
 
+    @open_and_close_conn
     def create_table(self, query: str, conn, cursor):
         cursor.execute(query)
         conn.commit()
 
+    @open_and_close_conn
     def insert(self, query: str, conn, cursor):
         cursor.execute(query)
         conn.commit()
 
+    @open_and_close_conn
     def select(self, query: str, conn, cursor):
         cursor.execute(query)
         resp = cursor.fetchall()
