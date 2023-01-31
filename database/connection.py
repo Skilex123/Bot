@@ -1,4 +1,5 @@
 import psycopg2
+import os
 
 
 class Conn:
@@ -6,38 +7,34 @@ class Conn:
     @property
     def conn(self):
         return psycopg2.connect(
-            dbname= 'bot_db',
-            user='postgress',
-            password = 'postgress',
-            port='5432',
-            host = 'localhost',
+            dbname=os.environ['DB_NAME'],
+            user=os.environ['DB_USER'],
+            password=os.environ['DB_PASSWORD'],
+            port=os.environ['DB_PORT'],
+            host=os.environ['DB_HOST'],
         )
 
-    def get_conn_and_cursor(self):
-        conn = self.conn
-        return conn, conn.cursor()
+    def open_and_close_conn(func):
+        def wrapper(*args, **kwargs):
+            conn = Conn().conn
+            cursor = conn.cursor()
+            resp = func(*args, conn=conn, cursor=cursor, **kwargs)
+            cursor.close()
+            conn.close()
+            return resp
+        return wrapper
 
-    def create_table(self, query):
-        conn, cursor = self.get_conn_and_cursor()
+    def create_table(self, query: str, conn, cursor):
         cursor.execute(query)
         conn.commit()
-        cursor.close()
-        conn.close()
 
-    def insert(self, query):
-        conn, cursor = self.get_conn_and_cursor()
+    def insert(self, query: str, conn, cursor):
         cursor.execute(query)
         conn.commit()
-        cursor.close()
-        conn.close()
 
-    def select(self, query):
-        conn, cursor = self.get_conn_and_cursor()
+    def select(self, query: str, conn, cursor):
         cursor.execute(query)
         resp = cursor.fetchall()
-        conn.commit()
-        cursor.close()
-        conn.close()
         return resp
 
 
@@ -45,4 +42,5 @@ if __name__ == '__main__':
 #   #  just_rsp = create_order_table(cur)
 #    # just_rsp
 #     create_order(cur)
-    pass
+    conn = Conn().conn
+    conn
