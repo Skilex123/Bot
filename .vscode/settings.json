@@ -1,7 +1,9 @@
 {
   "editor.suggestSelection": "first",
   "python.languageServer": "Pylance",
+  "python.linting.flake8Enabled": true,
   "python.linting.mypyEnabled": true,
+  "python.linting.pylintEnabled": true,
   "[json]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
