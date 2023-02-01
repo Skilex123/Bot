@@ -1,8 +1,8 @@
 [
-  {"name": "", "color": "", "price": , "amount": },
-  {"name": "", "color": "", "price": , "amount": },
-  {"name": "", "color": "", "price": , "amount": },
-  {"name": "", "color": "", "price": , "amount": },
-  {"name": "", "color": "", "price": , "amount": },
-  {"name": "", "color": "", "price": , "amount": }
+  {"name": "аваланч", "color": "розовый", "price":95.25, "amount":50 },
+  {"name": "билуга", "color": "зелёно-белый", "price":100, "amount":75 },
+  {"name": "моника", "color": "жолтый", "price":120, "amount":35 },
+  {"name": "проуд", "color": "белый", "price":90.75, "amount":40 },
+  {"name": "мондиаль", "color": "жёлтый", "price":80, "amount":45 },
+  {"name": "гвоздика", "color": "красный", "price":35.50, "amount":100 }
 ]
