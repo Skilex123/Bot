@@ -16,7 +16,7 @@ class Conn:
             host=os.environ['DB_HOST'],
         )
 
-    def open_and_close_conn(func: Callable): # type: ignore
+    def open_and_close_conn(func: Callable):  # type: ignore
         def wrapper(*args, **kwargs):
             conn = Conn().conn
             cursor = conn.cursor()
@@ -37,7 +37,7 @@ class Conn:
         conn.commit()
 
     @open_and_close_conn
-    def select(self, query: str, conn, cursor):
+    def select(self, query: str, conn, cursor):  # pylint: disable=unused-argument
         cursor.execute(query)
         resp = cursor.fetchall()
         return resp
