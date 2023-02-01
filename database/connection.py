@@ -1,5 +1,5 @@
 import os
-from typing import Callable
+from typing import Callable, List, Any
 
 import psycopg2
 
@@ -32,8 +32,8 @@ class Conn:
         conn.commit()
 
     @open_and_close_conn
-    def insert(self, query: str, conn, cursor):
-        cursor.execute(query)
+    def insert(self, query: str, values: List[Any], conn, cursor):
+        cursor.execute(query, values)
         conn.commit()
 
     @open_and_close_conn
