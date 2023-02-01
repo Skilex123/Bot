@@ -1,5 +1,6 @@
 import json
 
+
 def read_json(file_name):
     with open(file_name, 'r', encoding='utf-8') as file:
         content = json.load(file)
@@ -19,4 +20,3 @@ if __name__ == "__main__":
     list_of_flowers = read_json(file_name=FILE_NAME)
     flowers = iterate_list(list_of_flowers)
     print(flowers)
-
