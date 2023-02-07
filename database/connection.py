@@ -27,7 +27,7 @@ class Conn:
         return wrapper
 
     @open_and_close_conn
-    def create_table(self, query: str, conn, cursor):
+    def execute_query_without_response(self, query: str, conn, cursor):
         cursor.execute(query)
         conn.commit()
 

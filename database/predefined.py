@@ -1,5 +1,18 @@
 import json
 
+from connection import Conn
+conection = Conn()
+
+def save_flower(flower):
+    query = """
+        INSERT INTO "flowers" (
+            name,color,price,amount
+        )
+        VALUES (%s,%s,%s,%s);
+    """
+    values = [flower['name'], flower['color'], flower['price'], flower['amount']]
+    conection.insert(query, values)
+
 
 def read_json(file_name):
     with open(file_name, 'r', encoding='utf-8') as file:
@@ -19,4 +32,4 @@ if __name__ == "__main__":
     FILE_NAME = 'flowers.json'
     list_of_flowers = read_json(file_name=FILE_NAME)
     flowers = iterate_list(list_of_flowers)
-    print(flowers)
+
