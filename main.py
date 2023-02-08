@@ -10,12 +10,14 @@ bot = telebot.TeleBot(token)
 map_url = 'https://www.google.com.ua/maps/place/Mahazyn+Kvitiv+%22Nimfeya%22/@50.2816994,28.6087086,17.87z/data=!4m5!3m4!1s0x0:0x5e89e29b879186cc!8m2!3d50.2812976!4d28.6087867?hl=ru'
 
 
-
 def get_greetings_keyboard():
-    markup = types.InlineKeyboardMarkup(row_width= 2 )
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    markup = types.InlineKeyboardMarkup(row_width=2)
     start_service = types.InlineKeyboardButton(text='Локация', callback_data='location')
     start_system = types.InlineKeyboardButton(text='Погода', callback_data='wheather')
-    markup.add(start_service, start_system)
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    item1 = types.KeyboardButton("Меню")
+    markup.add(start_service, start_system, item1)
     return markup
 
 
