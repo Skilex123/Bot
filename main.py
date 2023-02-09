@@ -11,13 +11,10 @@ map_url = 'https://www.google.com.ua/maps/place/Mahazyn+Kvitiv+%22Nimfeya%22/@50
 
 
 def get_greetings_keyboard():
-    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     markup = types.InlineKeyboardMarkup(row_width=2)
     start_service = types.InlineKeyboardButton(text='Локация', callback_data='location')
     start_system = types.InlineKeyboardButton(text='Погода', callback_data='wheather')
-    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    item1 = types.KeyboardButton("Меню")
-    markup.add(start_service, start_system, item1)
+    markup.add(start_service, start_system)
     return markup
 
 
@@ -38,6 +35,20 @@ def location_callback(call):
 @bot.callback_query_handler(func=lambda call: call.data == 'wheather')
 def weather_callback(call):
     bot.send_message(call.message.chat.id, get_weather())
+
+
+@bot.message_handler(commands=['button'])
+def button_message(message):
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    item1 = types.KeyboardButton("Меню")
+    markup.add(item1)
+    bot.send_message(message.chat.id, 'Выберите что вам надо', reply_markup=markup)
+
+
+@bot.message_handler(content_types='text')
+def message_reply(message):
+    if message.text == " Меню":
+        bot.send_message(message.chat.id, "Скоро будет работать")
 
 
 if __name__ == '__main__':
