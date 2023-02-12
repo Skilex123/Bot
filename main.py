@@ -10,7 +10,7 @@ bot = telebot.TeleBot(token)
 map_url = 'https://www.google.com.ua/maps/place/Mahazyn+Kvitiv+%22Nimfeya%22/@50.2816994,28.6087086,17.87z/data=!4m5!3m4!1s0x0:0x5e89e29b879186cc!8m2!3d50.2812976!4d28.6087867?hl=ru'
 
 
-def get_greetings_keyboard():
+def get_change_keyboard():
     markup = types.InlineKeyboardMarkup(row_width=2)
     start_service = types.InlineKeyboardButton(text='Локация', callback_data='location')
     start_system = types.InlineKeyboardButton(text='Погода', callback_data='wheather')
@@ -37,18 +37,16 @@ def weather_callback(call):
     bot.send_message(call.message.chat.id, get_weather())
 
 
-@bot.message_handler(commands=['button'])
-def button_message(message):
+def get_greetings_keyboard():
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     item1 = types.KeyboardButton("Меню")
     markup.add(item1)
-    bot.send_message(message.chat.id, 'Выберите что вам надо', reply_markup=markup)
+    return markup
 
 
-@bot.message_handler(content_types='text')
-def message_reply(message):
-    if message.text == " Меню":
-        bot.send_message(message.chat.id, "Скоро будет работать")
+@bot.message_handler(func=lambda message: message.text == 'Меню')
+def reply_button_menu(message):
+    return bot.send_message(message.chat.id, 'Меню', reply_markup=get_change_keyboard())
 
 
 if __name__ == '__main__':
